@@ -1,0 +1,9 @@
+#Misc Lang
+itemGroup.seedshiddeninthings=Seeds Hidden in Things
+
+#Item Lang
+item.daemonumbra.seedshiddeninthings.seedypoo.name=Seedy Poo
+
+#Config Lang
+daemonumbra.seedshiddeninthings.config.seedrng=Seed drop weight
+daemonumbra.seedshiddeninthings.config.seeds=Droppable Seeds

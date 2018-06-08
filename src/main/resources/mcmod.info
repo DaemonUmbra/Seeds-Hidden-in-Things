@@ -1,0 +1,20 @@
+[
+  {
+    "modid": "seedshiddeninthings",
+    "name": "Seeds Hidden in Things",
+    "description": "A semi-joke mod centered around getting seeds.... from throwing poop...",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "https://minecraft.curseforge.com/projects/seeds-hidden-in-things/files",
+    "authorList": [
+      "DaemonUmbra"
+    ],
+    "credits": "DubstepDentist for the original concept",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": [
+      ""
+    ]
+  }
+]
