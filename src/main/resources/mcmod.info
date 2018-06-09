@@ -5,7 +5,7 @@
     "description": "A semi-joke mod centered around getting seeds.... from throwing poop...",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "",
+    "url": "https://minecraft.curseforge.com/projects/seeds-hidden-in-things",
     "updateUrl": "https://minecraft.curseforge.com/projects/seeds-hidden-in-things/files",
     "authorList": [
       "DaemonUmbra"

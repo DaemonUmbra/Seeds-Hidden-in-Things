@@ -1,8 +1,10 @@
 package daemonumbra.seedshiddeninthings.util;
 
-import java.time.Clock;
 import java.util.Random;
 
+/**
+ * Stores global constants for SHiT
+ */
 public class Constants {
     //@Mod Constants
     public static final String MOD_ID = "seedshiddeninthings";
@@ -15,5 +17,5 @@ public class Constants {
     public static final String CLIENT_PROXY = "daemonumbra.seedshiddeninthings.proxy.ClientProxy";
 
     //Util Constants
-    public static final Random RNG = new Random(Clock.systemUTC().millis());
+    public static final Random RNG = new Random();
 }
