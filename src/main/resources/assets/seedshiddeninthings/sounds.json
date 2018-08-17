@@ -1,0 +1,8 @@
+{
+  "entity.poop": {
+    "subtitle":"daemonumbra.seedshiddeninthings.entity.poop",
+    "sounds":[
+      "seedshiddeninthings:entity/poop"
+    ]
+  }
+}

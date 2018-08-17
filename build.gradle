@@ -55,3 +55,9 @@ processResources {
         exclude "mcmod.info"
     }
 }
+
+jar{
+    manifest{
+        attributes 'FMLAT': 'seedshiddeninthings_at.cfg'
+    }
+}

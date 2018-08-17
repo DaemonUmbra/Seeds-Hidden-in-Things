@@ -1,0 +1,13 @@
+package net.daemonumbra.seedshiddeninthings.init;
+
+import net.daemonumbra.seedshiddeninthings.commands.MainCommand;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+
+/**
+ * Manages Commands for SHiT
+ */
+public class SHiTCommands {
+    public static void registerCommands(FMLServerStartingEvent event) {
+        event.registerServerCommand(new MainCommand());
+    }
+}
