@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 
-import static net.minecraftforge.fml.common.registry.GameRegistry.*;
+import static net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 @ObjectHolder(Constants.MOD_ID)
 public class SHiTSounds {

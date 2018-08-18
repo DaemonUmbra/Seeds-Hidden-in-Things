@@ -1,15 +1,10 @@
 package net.daemonumbra.seedshiddeninthings.commands;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.daemonumbra.seedshiddeninthings.capabilities.PooManager;
 import net.daemonumbra.seedshiddeninthings.capabilities.PooManagerProvider;
-import net.daemonumbra.seedshiddeninthings.config.SHiTConfig;
-import net.daemonumbra.seedshiddeninthings.eventhandlers.EntityHandler;
-import net.daemonumbra.seedshiddeninthings.util.MiscUtil;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -19,23 +14,15 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A command to reload the config on servers
- */
-public class MainCommand implements ICommand {
-    List<String> Aliases;
-    List<String> Tab;
+public class SHiTDebug implements ICommand {
+    private List<String> aliases;
+    private List<String> tab;
 
-    public MainCommand() {
-        Aliases = new ArrayList<>();
-        Aliases.add("SeedsHiddenInThings");
-        Aliases.add("seedshiddeninthings");
-        Aliases.add("shit");
+    public SHiTDebug(){
+        tab = new ArrayList<>();
+        aliases = new ArrayList<>();
 
-        Tab = new ArrayList<>();
-        Tab.add("reload");
-        Tab.add("poop");
-        Tab.add("getttpc");
+        aliases.add("seedshiddeninthings_debug");
     }
 
     /**
@@ -43,7 +30,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public String getName() {
-        return "seedshiddeninthings";
+        return "seedshiddeninthings_debug";
     }
 
     /**
@@ -53,7 +40,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public String getUsage(ICommandSender sender) {
-        return "/seedshiddeninthings <reload/poop>";
+        return "/seedshiddeninthings_debug [username(s)]";
     }
 
     /**
@@ -61,7 +48,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public List<String> getAliases() {
-        return Aliases;
+        return aliases;
     }
 
     /**
@@ -73,32 +60,25 @@ public class MainCommand implements ICommand {
      */
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        switch (args[0].toLowerCase()){
-            case "reload":{
-                SHiTConfig.loadSeeds();
-                break;
-            }
-            case "poop":{
-                if(sender instanceof EntityPlayer){
-                    MiscUtil.poop((EntityPlayer)sender);
+        switch(args.length){
+            case 0:{
+                if(sender instanceof EntityPlayer) {
+                    sender.sendMessage(new TextComponentString("Your TTPC is " + ((EntityPlayer) sender).getCapability(PooManagerProvider.POO_MANAGER, null).getTimeToPoopChance() + " seconds"));
                 }else{
-                    sender.sendMessage(new TextComponentString(ChatFormatting.RED + "ERROR: Only players can use this command"));
+                    sender.sendMessage(new TextComponentString(ChatFormatting.RED + "ERROR: You must be a Player or specify a player to use this command"));
                 }
                 break;
             }
-            case "getttpc":{
-                if(sender instanceof Entity){
-                    Entity entity = (Entity)sender;
-                    if(entity.hasCapability(PooManagerProvider.POO_MANAGER,null)){
-                        sender.sendMessage(new TextComponentString("Your TTPC is: " + entity.getCapability(PooManagerProvider.POO_MANAGER,null).getTicksToPoopChance()));
+            default:{
+                for (String user: args) {
+                    EntityPlayer player = server.getPlayerList().getPlayerByUsername(user);
+                    if(player != null){
+                        sender.sendMessage(new TextComponentString(player.getName() + " has a TTPC of " + player.getCapability(PooManagerProvider.POO_MANAGER,null).getTimeToPoopChance() + " seconds"));
                     }else{
-                        sender.sendMessage(new TextComponentString(ChatFormatting.RED + "Error: Entity does not have PooManager Capability"));
+                        sender.sendMessage(new TextComponentString(ChatFormatting.RED + "ERROR: Player \"" + user + "\" not Found"));
                     }
+                    break;
                 }
-                break;
-            }
-            default :{
-                sender.sendMessage(new TextComponentString(ChatFormatting.RED + "Error: Unknown sub-command"));
             }
         }
     }
@@ -111,7 +91,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-        return sender.canUseCommand(4, this.getName());
+        return true;
     }
 
     /**
@@ -124,7 +104,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
-        return Tab;
+        return tab;
     }
 
     /**
@@ -135,7 +115,7 @@ public class MainCommand implements ICommand {
      */
     @Override
     public boolean isUsernameIndex(String[] args, int index) {
-        return false;
+        return index != 0;
     }
 
     /**
@@ -178,6 +158,6 @@ public class MainCommand implements ICommand {
      */
     @Override
     public int compareTo(ICommand o) {
-        return this.getName().compareTo(o.getName());
+        return this.getName().compareToIgnoreCase(o.getName());
     }
 }

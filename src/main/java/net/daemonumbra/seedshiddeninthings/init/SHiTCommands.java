@@ -1,6 +1,7 @@
 package net.daemonumbra.seedshiddeninthings.init;
 
-import net.daemonumbra.seedshiddeninthings.commands.MainCommand;
+import net.daemonumbra.seedshiddeninthings.commands.SHiTDebug;
+import net.daemonumbra.seedshiddeninthings.commands.SHiTReload;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /**
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
  */
 public class SHiTCommands {
     public static void registerCommands(FMLServerStartingEvent event) {
-        event.registerServerCommand(new MainCommand());
+        event.registerServerCommand(new SHiTReload());
+        event.registerServerCommand(new SHiTDebug());
     }
 }

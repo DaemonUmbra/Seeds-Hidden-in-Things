@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
 public class CapabilityHandler {
-    public static final ResourceLocation POO_MANAGER = new ResourceLocation(Constants.MOD_ID,"poo manager");
+    public static final ResourceLocation POO_MANAGER = new ResourceLocation(Constants.MOD_ID,"PooManager");
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<Entity> event){

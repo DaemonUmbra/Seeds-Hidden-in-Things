@@ -9,10 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +23,10 @@ import static net.daemonumbra.seedshiddeninthings.util.Constants.*;
         modid = MOD_ID,
         name = MOD_NAME,
         version = VERSION,
-        updateJSON = UPDATE_URL
+        updateJSON = UPDATE_URL,
+        certificateFingerprint = FINGERPRINT,
+        acceptedMinecraftVersions = MC_VERSION
+
 )
 public class SeedsHiddenInThings {
 
@@ -56,5 +56,12 @@ public class SeedsHiddenInThings {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    @EventHandler
+    public void fingerprintViolation(FMLFingerprintViolationEvent event) throws Exception {
+        if(!event.isDirectory()){
+            throw new Exception("Detected a modified Seeds Hidden in Things jar, please get a clean jar and try again");
+        }
     }
 }

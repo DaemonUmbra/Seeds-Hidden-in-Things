@@ -1,8 +1,8 @@
 package net.daemonumbra.seedshiddeninthings.capabilities;
 
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTPrimitive;
-import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
@@ -30,7 +30,9 @@ public class PooManagerStorage implements Capability.IStorage<IPooManager> {
     @Nullable
     @Override
     public NBTBase writeNBT(Capability<IPooManager> capability, IPooManager instance, EnumFacing side) {
-        return new NBTTagInt(instance.getTicksToPoopChance());
+        NBTTagCompound PoopManager = new NBTTagCompound();
+        PoopManager.setTag("LastPoop", new NBTTagLong(instance.getLastPoopTime().toEpochMilli()));
+        return PoopManager;
     }
 
     /**
@@ -54,6 +56,6 @@ public class PooManagerStorage implements Capability.IStorage<IPooManager> {
      */
     @Override
     public void readNBT(Capability<IPooManager> capability, IPooManager instance, EnumFacing side, NBTBase nbt) {
-        instance.setTicksToPoopChance(((NBTPrimitive)nbt).getInt());
+        instance.setLastPoopTime(((NBTTagCompound)nbt).getLong("LastPoop"));
     }
 }

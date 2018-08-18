@@ -1,8 +1,11 @@
 package net.daemonumbra.seedshiddeninthings.capabilities;
 
+import java.time.Instant;
+
 public interface IPooManager {
-    int getTicksToPoopChance();
-    void setTicksToPoopChance(int ticks);
-    void decrementTTPC();
+    int getTimeToPoopChance();
+    Instant getLastPoopTime();
+    boolean canPoop();
     void resetTTPC();
+    void setLastPoopTime(long aLong);
 }

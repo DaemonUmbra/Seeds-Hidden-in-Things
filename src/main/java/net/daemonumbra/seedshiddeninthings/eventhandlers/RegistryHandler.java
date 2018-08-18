@@ -32,7 +32,7 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void addEntities(RegistryEvent.Register<EntityEntry> event) {
-        SHiTEntities.registerEntities();
+        SHiTEntities.registerEntities(event);
     }
 
     @SubscribeEvent

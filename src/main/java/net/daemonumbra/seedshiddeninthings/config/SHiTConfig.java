@@ -38,10 +38,10 @@ public class SHiTConfig {
     @LangKey("net.daemonumbra.seedshiddeninthings.config.poopchance")
     public static int poopChance = 10;
 
-    @RangeInt(min = 20)
-    @Comment("The number of ticks between poop chances.")
-    @LangKey("net.daemonumbra.seedshiddeninthings.config.tickstopoopchance")
-    public static int ticksToPoopChance = 6000;
+    @RangeInt(min = 0)
+    @Comment("The number of seconds between poop chances.")
+    @LangKey("net.daemonumbra.seedshiddeninthings.config.timetopoopchance")
+    public static int timeToPoopChance = 600;
 
     /**
      * Internal seed list
