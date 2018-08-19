@@ -15,12 +15,12 @@ buildscript {
 
 apply plugin: "net.minecraftforge.gradle.forge"
 
-version = modVersion
+version = mcVersion + '-' + modVersion
 group = modGroup
 archivesBaseName = modBaseName
 
 minecraft {
-    version = project.forgeVersion
+    version = project.mcVersion + '-' + project.forgeVersion
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
@@ -30,6 +30,8 @@ minecraft {
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = project.mcpVersion
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+
+    replace '@VERSION@',project.version
 }
 
 repositories {
@@ -56,6 +58,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
+
 }
 
 if(new File("./","secrets.gradle").exists()){
