@@ -61,7 +61,7 @@ processResources {
 
 }
 
-if(new File("./","secrets.gradle").exists()){
+if(new File("secrets.gradle").exists()){
 task signJar(type:SignJar, dependsOn: reobfJar){
     apply from: 'secrets.gradle'
     inputFile = jar.archivePath
