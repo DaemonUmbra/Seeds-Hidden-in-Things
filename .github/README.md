@@ -1,5 +1,7 @@
 # Seeds Hidden in Things
-A mod that adds seedy, throwable poop to Minecraft.\
+*Note: This mod has been discontinued as I feel it is in poor taste and do not wish to carry it forward*
+
+A mod that adds seedy, throwable poop to Minecraft.  
 This mod started as a joke, but I felt I needed something simple to make into a mod and start teaching myself Forge, so here it is.
 
 For issues or feature requests/suggestions, please refer to the [Issue Templates](../../../issues/new/choose).
